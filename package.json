@@ -1,0 +1,22 @@
+{
+    "name": "optionally",
+    "version": "0.1.0",
+    "description": "...",
+    "license": "MIT",
+    "author": {
+        "name": "Iliyan Jeliazkov",
+        "email": "iliyan@acm.org",
+        "url": "https://github.com/iliyan/optionally"
+    },
+    "main": "optionally.js",
+    "repository":
+            {
+                "type": "git",
+                "url": "https://github.com/iliyan/optionally"
+            },
+    "devDependencies": {
+        "karma": "^0.12.22",
+        "karma-jasmine": "~0.2.0",
+        "karma-phantomjs-launcher": "^0.1.4"
+    }
+}

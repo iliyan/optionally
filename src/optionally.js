@@ -8,13 +8,14 @@ function interpolate(name) {
     return path.normalize(result);
 }
 
-function load(file, default_config) {
+function load(file, default_config, stdout) {
     var configfile = interpolate(file);
     var fs = require("fs");
     if (fs.existsSync(configfile)) {
-        console.log("loading: " + configfile);
+        stdout.log("loading: " + configfile);
         return merge(default_config, JSON.parse(fs.readFileSync(configfile, "utf-8")));
     }
+    stdout && stdout.write("missing: " + configfile);
     return default_config;
 }
 
@@ -29,7 +30,7 @@ function resolve(files, default_config) {
         }, default_config);
     }
     else {
-        return load(e, default_config);
+        return load(files, default_config);
     }
 }
 
@@ -76,6 +77,10 @@ var default_config = {
     baseUrl: "https://dev6.travelhq.com/regtemplate"
 };
 
-exports.config = resolve("${USERPROFILE}/.protractor/config.js", default_config);
+//exports.config = resolve("${USERPROFILE}/.protractor/config.js", default_config);
+//console.log(exports.config);
+
+exports.config = resolve(["${USERPROFILE}/.protractor/config.js", "${USERPROFILE}/.protractor/config.js"], default_config, process.stdout);
 console.log(exports.config);
+
 throw 0;
